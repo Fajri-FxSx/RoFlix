@@ -1,0 +1,60 @@
+@use '../../../scss/abstracts/' as *;
+.hamburger-menu {
+  $size: 30px;
+  height: $size;
+  width: $size;
+  @include flex;
+
+  cursor: pointer;
+  display: none;
+
+  @include mobile {
+    display: flex;
+  }
+
+  & > .hamburger {
+    position: relative;
+    transition: background-color 0.3s;
+
+    &,
+    &::after,
+    &::before {
+      width: $size;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 4px;
+    }
+
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      transition: transform 0.3s;
+    }
+
+    &::before {
+      top: -10px;
+    }
+
+    &::after {
+      top: 10px;
+    }
+  }
+
+  &.active > .hamburger {
+    background-color: transparent;
+
+    &::before {
+      transform: rotate(45deg);
+      left: 6px;
+      transform-origin: top left;
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+      left: 6px;
+      transform-origin: bottom left;
+    }
+  }
+}
