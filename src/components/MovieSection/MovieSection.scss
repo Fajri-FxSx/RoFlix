@@ -1,0 +1,51 @@
+@use '../../scss/abstracts/' as *;
+
+.movie-section {
+  &__header {
+    @include flex(center, space-between);
+    flex-wrap: wrap;
+  }
+
+  &__dropdown-filter {
+    position: relative;
+
+    &.active &__list {
+      visibility: 1;
+      opacity: 1;
+    }
+    &__list {
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+
+      background-color: $sliver;
+      border-radius: 8px;
+      padding: 12px 20px;
+      z-index: 4;
+
+      visibility: 0;
+      opacity: 0;
+      transition: visibility 0.4s, opacity 0.4s;
+
+      & > li {
+        @include flex(center, flex-start);
+        color: $black;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $sliverHover;
+        }
+
+        & > input {
+          cursor: pointer;
+        }
+        & > label {
+          min-width: 120px;
+          padding: 4px 8px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
