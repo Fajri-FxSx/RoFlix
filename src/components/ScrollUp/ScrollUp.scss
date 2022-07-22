@@ -1,0 +1,44 @@
+@use '../../scss/abstracts/' as *;
+
+.scroll-up {
+  @include flex;
+  display: inline-flex;
+
+  position: fixed;
+  bottom: 80px;
+  right: 10px;
+  z-index: 100;
+
+  padding: 12px;
+  background-color: $black;
+  border-radius: 50%;
+  box-shadow: $shadow;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.4s, opacity 0.4s;
+
+  cursor: pointer;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+
+    &:hover {
+      & > i {
+        animation: movingArrow 0.5s infinite;
+      }
+    }
+  }
+
+  @keyframes movingArrow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+}
