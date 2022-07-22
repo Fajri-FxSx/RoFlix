@@ -1,0 +1,194 @@
+@use '../../scss/abstracts/' as *;
+.banner {
+  user-select: none;
+
+  &__item {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding-top: 40%;
+
+    @include tablet {
+      padding-top: 0;
+    }
+
+    @include mobile {
+      padding-top: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba($black, 0.4);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 100px;
+      width: 100%;
+      background: linear-gradient(to top, $bodyBg, transparent);
+    }
+
+    .item-wraper {
+      @include flex(center, flex-start);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+      @include tablet {
+        position: relative;
+        padding: 6rem 0;
+      }
+
+      @include mobile {
+        position: relative;
+        padding: 4rem 2rem;
+      }
+
+      .item-content {
+        height: 100%;
+        width: 100%;
+        @include flex(flex-start, center);
+        flex-direction: column;
+
+        & > * + * {
+          margin-top: 1rem;
+        }
+
+        &__title {
+          font-size: 3rem;
+          font-weight: 700;
+          text-shadow: $shadow;
+
+          @include hiddenLine(2);
+          @include bannerAnimation(0, -100px, true);
+        }
+
+        &__infos {
+          @include flex(center, flex-start);
+          flex-wrap: wrap;
+          @include bannerAnimation(0, -100px, true);
+
+          & > li {
+            @include flex;
+            text-shadow: $shadow;
+
+            & + li {
+              $space: 1.5rem;
+              padding-left: $space;
+              position: relative;
+
+              &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: calc($space/2);
+                width: 1px;
+                height: 50%;
+                transform: translateY(-50%);
+                background-color: $textColor;
+              }
+            }
+          }
+        }
+
+        &__description {
+          text-align: justify;
+          text-shadow: $shadow;
+          @include hiddenLine(2);
+          @include bannerAnimation(0, -100px, true);
+        }
+
+        &__actions {
+          @include flex;
+          flex-wrap: wrap;
+
+          margin-top: 1.5rem;
+          font-size: $fontSizeMedium;
+          width: 100%;
+
+          & > * {
+            margin-top: 0.5rem;
+          }
+
+          @include bannerAnimation(0, -100px, true);
+        }
+      }
+
+      .item-poster {
+        margin: 0 auto;
+        width: 50%;
+        height: 100%;
+        @include bannerAnimation(0, 100px, true);
+
+        @include tablet {
+          width: 80%;
+          margin: 0 0 0 auto;
+        }
+
+        &__img {
+          padding-top: 160%;
+          border-radius: 4px;
+          box-shadow: $shadow;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
+    }
+
+    &.active > .item-wraper .item-content {
+      &__title,
+      &__infos,
+      &__description,
+      &__actions {
+        @include bannerAnimation;
+      }
+
+      &__title {
+        transition-delay: 0.3s, 0.3s;
+      }
+      &__infos {
+        transition-delay: 0.6s, 0.6s;
+      }
+      &__description {
+        transition-delay: 0.9s, 0.9s;
+      }
+      &__actions {
+        transition-delay: 1.2s, 1.2s;
+      }
+    }
+
+    &.active > .item-wraper .item-poster {
+      @include bannerAnimation;
+      transition-delay: 0.3s, 0.3s;
+    }
+  }
+
+  &:hover {
+    .swiper-button-prev,
+    .swiper-button-next {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    visibility: hidden;
+    opacity: 0;
+    color: white;
+    transition: visibility 0.4s, opacity 0.4s;
+  }
+}
