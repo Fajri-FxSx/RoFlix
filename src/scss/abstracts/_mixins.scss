@@ -1,0 +1,42 @@
+@use './variables' as *;
+
+@mixin flex($align: center, $justify: center) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin hiddenLine($line: 2) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+}
+
+@mixin bannerAnimation($opacity: 1, $translateX: 0, $transition: false) {
+  opacity: $opacity;
+  transform: translateX($translateX);
+  @if $transition {
+    transition: opacity 0.5s, transform 0.5s;
+  }
+}
+
+@mixin hoverSupported {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: calc($tabletWidth - 1px)) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: calc($tabletWidth)) and (max-width: calc($pcWidth - 1px)) {
+    @content;
+  }
+}
