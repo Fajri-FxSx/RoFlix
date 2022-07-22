@@ -1,0 +1,69 @@
+@use '../../scss/abstracts/' as *;
+
+.tv-season {
+  position: relative;
+  margin-bottom: 1rem;
+
+  &__list {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    right: auto;
+    max-height: 200px;
+
+    color: $black;
+    background-color: $sliver;
+    overflow-x: auto;
+    border-radius: 4px;
+    box-shadow: $shadow;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+    z-index: 1;
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    & > li {
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
+
+      @include hoverSupported {
+        background-color: $sliverHover;
+      }
+
+      &.active {
+        background-color: $mainColor;
+        color: $white;
+      }
+    }
+  }
+}
+.tv-episodes {
+  li {
+    background-color: $sliver;
+    @include hiddenLine(1);
+    border-radius: 4px;
+    padding: 0 0.5rem;
+    line-height: 2.5;
+    margin-bottom: 0.25rem;
+    color: $black;
+    box-shadow: $shadow;
+
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+
+    @include hoverSupported {
+      background-color: $sliverHover;
+    }
+
+    &.active {
+      background-color: $mainColor;
+      color: $white;
+    }
+  }
+}
