@@ -1,0 +1,226 @@
+@use '../../scss/abstracts/' as *;
+
+.movie-details {
+  position: relative;
+  .banner {
+    position: relative;
+    height: 40vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 100px;
+      width: 100%;
+      background: linear-gradient(to top, #181616, transparent);
+    }
+  }
+
+  .movie__content {
+    position: relative;
+    margin-top: -200px;
+
+    @include flex(flex-start, flex-start);
+
+    @include mobile {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    &__poster {
+      flex: 1;
+      padding-left: 2rem;
+      padding-right: 2rem;
+
+      @include tablet {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      @include mobile {
+        padding-left: 0;
+        padding-right: 0;
+        display: none;
+      }
+
+      &__img {
+        box-shadow: $shadow;
+        padding-top: 165%;
+        border-radius: 12px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+
+    &__info {
+      width: 70%;
+      padding-left: 2rem;
+
+      @include mobile {
+        width: 100%;
+        padding-left: 0;
+      }
+
+      & > * + * {
+        margin-top: 1.5rem;
+      }
+
+      & > .title {
+        font-size: 3rem;
+        font-weight: 700;
+        text-shadow: $shadow;
+      }
+
+      & > .overview {
+        text-align: justify;
+        text-shadow: $shadow;
+      }
+
+      & > .genres {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > * {
+          margin-top: 0.25rem;
+        }
+      }
+    }
+
+    .cast {
+      .cast-list {
+        display: flex;
+        padding-bottom: 1rem;
+        max-width: 100%;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+          height: 8px;
+          background-color: $boxBg;
+          border-radius: 8px;
+        }
+        &::-webkit-scrollbar-thumb:horizontal {
+          background-color: rgba($mainColor, 0.7);
+          border-radius: 8px;
+        }
+
+        & > * + * {
+          margin-left: 12px;
+        }
+        .cast-card {
+          flex-shrink: 0;
+          width: 140px;
+          background-color: $boxBg;
+          border-radius: 8px;
+          box-shadow: $shadow;
+          &__infos {
+            padding: 4px;
+          }
+
+          &__img {
+            padding-top: 120%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 0.25rem;
+          }
+          &__name {
+            font-size: 1.2rem;
+            @include hiddenLine(1);
+          }
+
+          &__character {
+            font-size: 0.8rem;
+            @include hiddenLine(2);
+          }
+        }
+      }
+    }
+  }
+
+  .trailer {
+    .trailer-list {
+      position: relative;
+
+      &__container {
+        display: flex;
+        max-width: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+
+        @include mobile {
+          overflow-x: auto;
+          padding-bottom: 1rem;
+
+          &::-webkit-scrollbar {
+            height: 8px;
+            background-color: $boxBg;
+            border-radius: 8px;
+          }
+          &::-webkit-scrollbar-thumb:horizontal {
+            background-color: rgba($mainColor, 0.7);
+            border-radius: 8px;
+          }
+        }
+
+        & > .trailer-card + .trailer-card {
+          margin-left: 12px;
+        }
+
+        .trailer-card {
+          flex-shrink: 0;
+          width: 532px;
+          position: relative;
+          cursor: pointer;
+
+          &__img {
+            position: relative;
+            padding-top: 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-bottom: 0.5rem;
+            &::before {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              height: 80px;
+              width: 100%;
+              background: linear-gradient(to top, $bodyBg, transparent);
+            }
+
+            .play-btn {
+              position: absolute;
+              bottom: 12px;
+              left: 12px;
+              @include flex;
+            }
+          }
+
+          &__title {
+            font-size: 1rem;
+            text-align: justify;
+            @include hiddenLine(1);
+          }
+        }
+      }
+    }
+  }
+}
