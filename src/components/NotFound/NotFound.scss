@@ -1,0 +1,21 @@
+@use '.../../../../scss/abstracts/' as *;
+
+.not-found {
+  padding: 7rem 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    font-size: 8rem;
+    text-shadow: $shadow;
+  }
+
+  &__content {
+    font-size: $fontSizeLarge;
+    text-shadow: $shadow;
+    margin-bottom: 2rem;
+  }
+}
