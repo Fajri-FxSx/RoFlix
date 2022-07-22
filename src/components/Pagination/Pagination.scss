@@ -1,0 +1,41 @@
+@use '../../scss/abstracts/' as *;
+
+.pagination {
+  @include flex;
+  flex-wrap: wrap;
+
+  &__item {
+    height: 40px;
+    @include flex;
+
+    padding: 0 12px;
+    margin: 0 4px;
+    font-size: $fontSizeMedium;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    @include mobile {
+      font-size: $fontSizeNormal;
+    }
+
+    &.active {
+      background-color: $mainColor;
+      box-shadow: $shadow;
+    }
+
+    @include hoverSupported {
+      background-color: $mainColor;
+      box-shadow: $shadow;
+    }
+
+    &.active,
+    &.disabled {
+      pointer-events: none;
+    }
+
+    &.disabled {
+      opacity: 0.5 !important;
+    }
+  }
+}
