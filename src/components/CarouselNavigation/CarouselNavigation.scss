@@ -1,0 +1,44 @@
+@use '../../scss/abstracts/' as *;
+
+.navigation-btn {
+  &__next,
+  &__previous {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 120px;
+    color: $mainColor;
+    cursor: pointer;
+    z-index: 1;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  &__previous {
+    @include flex(center, flex-start);
+    left: 0;
+    background: linear-gradient(to left, transparent, $bodyBg 70%);
+  }
+
+  &__next {
+    @include flex(center, flex-end);
+    right: 0;
+    background: linear-gradient(to right, transparent, $bodyBg 70%);
+  }
+
+  &.previous &__previous {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.next &__next {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
